@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import AdminLogin from './Components/Admin/AdminLogin';
+import Aforgetpassword from './Components/Admin/Aforgetpassword';
+import AdminHome from './Components/Admin/AdminHome';
+import Empregister from './Components/Employee/Empregister';
+import Emplogin from './Components/Employee/Emplogin';
+
+import { ColorModeContext, useMode } from "./Global";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import Dashboard from "./Components/Admin/Dashboard";
+import Employee from "./Components/Admin/Employee";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { Loaduser } from "./Redux/Admin/AdminLogin";
 function App() {
+
+
+  const [theme, colorMode] = useMode()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+     dispatch(Loaduser())
+
+    
+  },[] )
+ 
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="app">
+          <main className="content">
+            <Router>
+              <Routes>
+                <Route exact path='/empregister' element={<Empregister />} />
+                <Route exact path='/adlogin' element={<AdminLogin />} />
+                <Route exact path='/aforgot' element={<Aforgetpassword />} />
+                <Route exact path='/ahome' element={<AdminHome />} />
+                <Route exact path='/emplogin' element={<Emplogin />} />
+                <Route exact path="/dashboard" element={<Dashboard />} />
+                <Route exact path="/aemployee" element={<Employee/>} />
+              </Routes>
+            </Router>
+          </main>
+
+        </div >
+
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 
