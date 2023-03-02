@@ -125,6 +125,20 @@ export const AdminReducer = createReducer(initialState, {
         state.error = action.payload;
        
     },
+    EmployeeRequest: (state, action) => {
+        state.loading = true;
+       
+    },
+    EmployeeSuccess: (state, action) => {
+        state.loading = false;
+        state.admin = action.payload;
+       
+    },
+    EmployeeFailure: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+       
+    },
 
 
 });

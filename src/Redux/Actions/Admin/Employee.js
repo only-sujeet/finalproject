@@ -38,3 +38,22 @@ export const conTempEmp = (id) => async (dispatch) =>{
         })
     }
 }
+export const getEmp = () => async (dispatch) =>{
+    try {
+        dispatch({
+            type: "EmployeeRequest"
+        })
+        const response = await axios.get(`/api/admin/getpemp`)
+
+        dispatch({
+            type: "EmployeeSuccess",
+            payload: response
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: "EmployeeFailure",
+            payload: error
+        })
+    }
+}
