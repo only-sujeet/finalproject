@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 
-const EmpSchema = mongoose.Schema({
+const TempEmpSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -25,15 +25,16 @@ const EmpSchema = mongoose.Schema({
         type: String,
         required: true
 
-    }
+    },
+   
 })
 
-EmpSchema.pre('save', async function (next){
-    if(this.isModified('password')){
-        this.password = await bcrypt.hash(this.password,12)
+TempEmpSchema.pre('save', async function (next) {
+    if (this.isModified('password')) {
+        this.password = await bcrypt.hash(this.password, 12)
     }
     next();
 })
 
-const EmpRegistertemp = mongoose.model("Empregister", EmpSchema);
-module.exports = EmpRegistertemp;
+const TempEmployee = mongoose.model("TempEmployee", TempEmpSchema);
+module.exports = TempEmployee;

@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Grid, TextField, InputAdornment, Button, Typography, IconButton, } from '@mui/material'
 import { Email, LoginRounded, PasswordOutlined, Visibility, VisibilityOff } from '@mui/icons-material'
 import Logo from '../Images/Icons/login.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { adminLogin } from '../../Redux/Admin/AdminLogin';
+
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup'
+import { adminLogin } from '../../Redux/Actions/Admin/Login';
 
 
 const AdminLogin = () => {
@@ -20,6 +21,11 @@ const AdminLogin = () => {
     const dispatch = useDispatch()
     const { isAuthenticated } = useSelector((state) => (state.admin))
     const navigate = useNavigate()
+
+    useEffect(() => {
+        isAuthenticated ? navigate('/dashboard') : navigate('/adlogin')
+    }, [isAuthenticated])
+
     const [type, setType] = useState("password")
     const [visible, setVisible] = useState(false)
     const icon = (visible ? <Visibility /> : <VisibilityOff />)
@@ -75,13 +81,13 @@ const AdminLogin = () => {
 
     }
 
-    isAuthenticated && navigate('/dashboard')
 
     const onSubmit = (values, props) => {
         console.log(props)
         dispatch(adminLogin(values))
-        // isAuthenticated && navigate('/dashboard')
+
     }
+    isAuthenticated && navigate('/dashboard')
     const validationSchema = Yup.object().shape({
         email: Yup.string().email("Please Enter Valid Email").required("Please Enter Email"),
         password: Yup.string().required("Please Enter Your Password")
@@ -90,9 +96,7 @@ const AdminLogin = () => {
     return (
 
         <>
-            {/* <AdminSidebar /> */}
-            {/* <main className='content'> */}
-            {/* <AdminTopbar /> */}
+
             <Grid sx={styles.Box}>
                 <img src={Logo} style={styles.icon} alt="" />
                 <Formik initialValues={detail} onSubmit={onSubmit} validationSchema={validationSchema}>
@@ -150,10 +154,6 @@ const AdminLogin = () => {
                     }
                 </Formik>
             </Grid>
-
-
-            {/* </main> */}
-
 
         </>
 

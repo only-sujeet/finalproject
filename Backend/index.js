@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 app.use("/api/admin", require("./Routes/Admin/Adminlog"))
-app.use("/api/admin", require("./Routes/Admin/chemployee"))
+app.use("/api/admin", require("./Routes/Admin/Employee"))
 app.use("/api/employee", require("./Routes/Employee/Emplogin"))
 
 

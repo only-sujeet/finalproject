@@ -1,10 +1,10 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import AdminLogin from './Components/Admin/AdminLogin';
 import Aforgetpassword from './Components/Admin/Aforgetpassword';
 import AdminHome from './Components/Admin/AdminHome';
 import Empregister from './Components/Employee/Empregister';
 import Emplogin from './Components/Employee/Emplogin';
+import {  Routes, Route } from "react-router-dom"
 
 import { ColorModeContext, useMode } from "./Global";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -12,7 +12,7 @@ import Dashboard from "./Components/Admin/Dashboard";
 import Employee from "./Components/Admin/Employee";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { Loaduser } from "./Redux/Admin/AdminLogin";
+import { Loaduser } from './Redux/Actions/Admin/Login';
 function App() {
 
 
@@ -33,7 +33,7 @@ function App() {
         <CssBaseline />
         <div className="app">
           <main className="content">
-            <Router>
+          
               <Routes>
                 <Route exact path='/empregister' element={<Empregister />} />
                 <Route exact path='/adlogin' element={<AdminLogin />} />
@@ -43,7 +43,7 @@ function App() {
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/aemployee" element={<Employee/>} />
               </Routes>
-            </Router>
+            
           </main>
 
         </div >

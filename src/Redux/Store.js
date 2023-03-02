@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import adminSlice from "./Admin/AdminLogin"
+import { AdminReducer } from "./Admin/AdminLogin"
 
 const store = configureStore({
-    reducer:{
-        admin: adminSlice,
+    reducer: {
+        admin: AdminReducer,
     }
 })
 

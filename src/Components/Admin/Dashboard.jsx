@@ -1,16 +1,21 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import AdminSidebar from '../Global/AdminSidebar'
 import AdminTopbar from '../Global/AdminTopbar'
 import Header from '../Global/Header'
 
 const Dashboard = () => {
-  const { isAuthenticated } = useSelector(state => ({...state.admin}))
+   const { isAuthenticated } = useSelector((state) => (state.admin))
   const navigate = useNavigate()
 
-  // isAuthenticated ? navigate("/dashboard") : navigate('/adlogin')
+  useEffect(() => {
+   isAuthenticated ? navigate('/dashboard') : navigate('/adlogin')
+  }, [isAuthenticated])
+  
+  //  isAuthenticated ? navigate("/dashboard") : navigate('/adlogin')
   return (
     <div className='app'>
       <AdminSidebar />

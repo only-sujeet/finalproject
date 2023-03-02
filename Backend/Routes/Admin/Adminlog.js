@@ -64,7 +64,7 @@ router.post("/alogin", [
             const chpassword = await bcrypt.compare(password, admin.password);
 
             if (!chpassword) {
-                return res.status(404).json({ message: "Please Try to Login Proper Password" })
+                return res.status(404).json({ error: "Please Try to Login Proper Password" })
             }
             else {
                 token = await admin.generateAuthToken();
@@ -87,7 +87,7 @@ router.post("/alogin", [
 
 
     } catch (error) {
-        return res.status(404).json({ message: "Internal Server Error" })
+        return res.status(404).json({ error: error.message })
     }
 
 })
