@@ -1,6 +1,5 @@
 import { Box, Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, useTheme, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 import React from 'react'
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { tokens } from '../../Global'
 import { conTempEmp, getTempEmp } from '../../Redux/Actions/Admin/Employee'
@@ -12,19 +11,20 @@ const EmpModel = () => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
+    dispatch(getTempEmp())
   };
   const { data } = useSelector(state => ({ ...state.admin.admin }))
   const { loading } = useSelector(state => ({ ...state.admin }))
   const dispatch = useDispatch()
   console.log(data)
-  useEffect(() => {
-    dispatch(getTempEmp())
-  }, [dispatch])
+ 
 
   const handleClose = () => {
     setOpen(false);
   };
-
+  // const request = () => {
+  //   dispatch(getTempEmp())
+  // }
   const confirm = (id) => {
     dispatch(conTempEmp(id))
     dispatch(getTempEmp())
@@ -60,7 +60,7 @@ const EmpModel = () => {
                 <TableBody>
                   {
                     data?.map((data) => (
-                     <TableRow key={data._id}>
+                      <TableRow key={data._id}>
                         <TableCell >{data.name}</TableCell>
                         <TableCell >{data.email}</TableCell>
                         <TableCell >{data.gender}</TableCell>

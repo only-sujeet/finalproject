@@ -38,14 +38,14 @@ router.post("/employee/:_id", isAuthenticate, async (req, res) => {
     }
 })
 
-router.get("/getpemp", isAuthenticate, async (req, res) => {
+router.get("/getemp", isAuthenticate, async (req, res) => {
     try {
         const employee = await Employee.find({})
         if (!employee) {
             res.status(404).json({ message: "Employee Not Find" })
         }
         else {
-            res.status(200).json(employee)
+            res.status(200).json({employee:employee})
         }
     } catch (error) {
         res.status(500).json({ error: error.message })

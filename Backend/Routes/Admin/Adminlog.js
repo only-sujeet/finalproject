@@ -71,7 +71,7 @@ router.post("/alogin", [
                 // console.log({ token: token })
                 const option = {
                     httpOnly: true,
-                    expires: new Date(Date.now() + 600000)
+                    expires: new Date(Date.now() + 86400*1000)
                 }
 
                 res.status(201).cookie("admintoken", token, option).json({

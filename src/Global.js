@@ -150,7 +150,7 @@ export const themeSettings = (mode) => {
 
                 } : {
                     primary: {
-                        main: colors.redAccent[700],
+                        main: colors.blueAccent[600],
 
                     },
                     secondary: {
