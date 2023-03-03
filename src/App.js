@@ -10,6 +10,7 @@ import { ColorModeContext, useMode } from "./Global";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import Dashboard from "./Components/Admin/Dashboard";
 import Employee from "./Components/Admin/Employee";
+import RequestedEmployee from "./Components/Admin/RequestedEmployee";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Loaduser } from './Redux/Actions/Admin/Login';
@@ -42,6 +43,7 @@ function App() {
                 <Route exact path='/emplogin' element={<Emplogin />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
                 <Route exact path="/aemployee" element={<Employee/>} />
+                <Route exact path="/aremployee" element={<RequestedEmployee/>} />
               </Routes>
             
           </main>

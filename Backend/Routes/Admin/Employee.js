@@ -45,7 +45,7 @@ router.get("/getemp", isAuthenticate, async (req, res) => {
             res.status(404).json({ message: "Employee Not Find" })
         }
         else {
-            res.status(200).json({employee:employee})
+            res.status(200).json(employee)
         }
     } catch (error) {
         res.status(500).json({ error: error.message })

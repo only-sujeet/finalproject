@@ -65,7 +65,10 @@
 
 import { createReducer } from "@reduxjs/toolkit";
 
-const initialState = {}
+const initialState = {
+    data:[],
+    tempdata:[],
+}
 
 export const AdminReducer = createReducer(initialState, {
     LoginRequest: (state, action) => {
@@ -103,7 +106,7 @@ export const AdminReducer = createReducer(initialState, {
     },
     TempEmployeeSuccess: (state, action) => {
         state.loading = false;
-        state.admin = action.payload;
+        state.data = action.payload;
        
     },
     TempEmployeeFailure: (state, action) => {
@@ -117,7 +120,7 @@ export const AdminReducer = createReducer(initialState, {
     },
     CEmployeeSuccess: (state, action) => {
         state.loading = false;
-        state.admin = action.payload;
+        state.data = action.payload;
        
     },
     CEmployeeFailure: (state, action) => {
@@ -131,7 +134,7 @@ export const AdminReducer = createReducer(initialState, {
     },
     EmployeeSuccess: (state, action) => {
         state.loading = false;
-        state.admin = action.payload;
+        state.data = action.payload;
        
     },
     EmployeeFailure: (state, action) => {

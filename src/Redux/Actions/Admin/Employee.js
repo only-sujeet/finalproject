@@ -49,7 +49,6 @@ export const getEmp = () => async (dispatch) =>{
             type: "EmployeeSuccess",
             payload: response
         })
-        
     } catch (error) {
         dispatch({
             type: "EmployeeFailure",
