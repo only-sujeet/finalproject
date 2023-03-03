@@ -21,7 +21,7 @@ const Employee = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        isAuthenticated ? navigate('/aemployee') : navigate('/adlogin')
+        // isAuthenticated ? navigate('/aemployee') : navigate('/adlogin')
         dispatch(getEmp())
     }, [isAuthenticated])
 
